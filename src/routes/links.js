@@ -22,6 +22,7 @@ router.post("/add", async (req, res) => {
     description,
   };
   await pool.query("INSERT INTO links set ?", [newLink]);
+  req.flash("success", "Linked Added Successfully");
   res.redirect("/links/add");
 });
 
