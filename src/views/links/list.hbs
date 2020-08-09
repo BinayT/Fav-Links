@@ -12,9 +12,9 @@
                     <p class="m-4">
                         {{description}}
                     </p>
-                    <p>{{timeago created_at}}</p>
-                    <a href="/links/{{id}}" class="btn btn-danger">Delete</a>
-                    <a href="" class="btn btn-secondary">Edit</a>
+                    <p>Posted {{timeago created_at}}</p>
+                    <a href="/links/delete/{{id}}" class="btn btn-danger">Delete</a>
+                    <a href="/links/edit/{{id}}" class="btn btn-secondary">Edit</a>
                 </div>
             </div>
         </div>
