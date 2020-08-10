@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
+const { isLoggedIn } = require("../lib/protectedRoutesAuth");
 
 router.get("/signup", (req, res) => {
   res.render("auth/signup");
@@ -35,8 +36,13 @@ router.post(
   })
 );
 
-router.get("/profile", (req, res) => {
-  res.send("This is your profile");
+router.get("/profile", isLoggedIn, (req, res) => {
+  res.render("profile");
+});
+
+router.get("/logout", (req, res) => {
+  req.logOut();
+  res.redirect("/signin");
 });
 
 module.exports = router;
