@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const passport = require("passport");
-const { isLoggedIn } = require("../lib/protectedRoutesAuth");
+const { isLoggedIn, isNotLoggedIn } = require("../lib/protectedRoutesAuth");
 
-router.get("/signup", (req, res) => {
+router.get("/signup", isNotLoggedIn, (req, res) => {
   res.render("auth/signup");
 });
 
-router.get("/signin", (req, res) => {
+router.get("/signin", isNotLoggedIn, (req, res) => {
   res.render("auth/signin");
 });
 
@@ -19,7 +19,7 @@ router.get("/signin", (req, res) => {
   res.send("recibido");
 }); */
 
-router.post("/signin", (req, res, next) => {
+router.post("/signin", isNotLoggedIn, (req, res, next) => {
   passport.authenticate("local.signin", {
     successRedirect: "/profile",
     failureRedirect: "/signin",
